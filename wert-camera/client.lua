@@ -5,8 +5,6 @@ local cameraprop = nil
 local frontCam = false
 local photoprop = nil
 
-local WebHook = "YOUR_WEBHOOK"
-
 local fov_max = 70.0
 local fov_min = 5.0 -- max zoom level (smaller fov is more zoom)
 local zoomspeed = 10.0 -- camera zoom speed
@@ -147,11 +145,15 @@ RegisterNetEvent("wert-camera:client:use-camera", function()
                         elseif IsControlJustPressed(1, 176) then -- TAKE.. PIC
                             if not presstake then
                                 presstake = true
-                                exports['screenshot-basic']:requestScreenshotUpload(tostring(WebHook), "files[]", function(data)
-                                    local image = json.decode(data)
-                                    FullClose()
-                                    TriggerServerEvent("wert-camera:server:add-photo-item", json.encode(image.attachments[1].proxy_url))
-                                end)
+				QBCore.Functions.TriggerCallback("wert-camera:server:webhook", function(hook)
+					if hook then
+						exports['screenshot-basic']:requestScreenshotUpload(tostring(hook), "files[]", function(data)
+                                    			local image = json.decode(data)
+                                    			FullClose()
+                                    			TriggerServerEvent("wert-camera:server:add-photo-item", json.encode(image.attachments[1].proxy_url))
+                                		end)						
+					end
+				end)
                             end
                         end
         
