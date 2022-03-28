@@ -1,5 +1,7 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
+local WebHook = "YOUR_WEBHOOK"
+
 QBCore.Functions.CreateUseableItem("camera", function(source, item)
     local src = source
     TriggerClientEvent("wert-camera:client:use-camera", src)
@@ -21,4 +23,12 @@ RegisterNetEvent("wert-camera:server:add-photo-item", function(url)
         }
         ply.Functions.AddItem("photo", 1, nil, info)
     end
+end)
+
+QBCore.Functions.CreateCallback("wert-camera:server:webhook",function(source,cb)
+	if WebHook ~= "" then
+		cb(WebHook)
+	else
+		cb(nil)
+	end
 end)
