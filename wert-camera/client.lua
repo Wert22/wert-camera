@@ -5,7 +5,7 @@ local cameraprop = nil
 local frontCam = false
 local photoprop = nil
 
-local WebHook = "https://discord.com/api/webhooks/948347278077333504/hrhqBMX3HBvTDlukWP-i1FEUO23YbP_pVZCyC9mSEFLz2JSuvPvflT034GDNzqsmsaec"
+local WebHook = "YOUR_WEBHOOK"
 
 local fov_max = 70.0
 local fov_min = 5.0 -- max zoom level (smaller fov is more zoom)
