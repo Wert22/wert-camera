@@ -150,7 +150,7 @@ RegisterNetEvent("wert-camera:client:use-camera", function()
 						exports['screenshot-basic']:requestScreenshotUpload(tostring(hook), "files[]", function(data)
                                     			local image = json.decode(data)
                                     			FullClose()
-                                    			TriggerServerEvent("wert-camera:server:add-photo-item", json.encode(image.attachments[1].proxy_url))
+                                    			TriggerServerEvent("wert-camera:server:add-photo-item", json.encode(image.attachments[1].url))
                                 		end)						
 					end
 				end)
